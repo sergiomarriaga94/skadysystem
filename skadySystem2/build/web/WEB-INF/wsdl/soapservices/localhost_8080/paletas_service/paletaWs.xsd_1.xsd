@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI (http://jax-ws.java.net). RI's version is Metro/2.3.2-b608 (trunk-7979; 2015-01-21T12:50:19+0000) JAXWS-RI/2.2.11-b150120.1832 JAXWS-API/2.2.12 JAXB-RI/2.2.12-b141219.1637 JAXB-API/2.2.13-b141020.1521 svn-revision#unknown. --><xs:schema xmlns:tns="http://ws.paletas_service.udea.com/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://ws.paletas_service.udea.com/">
+
+<xs:element name="agregarEmpleado" type="tns:agregarEmpleado"/>
+
+<xs:element name="agregarEmpleadoResponse" type="tns:agregarEmpleadoResponse"/>
+
+<xs:element name="agregarPaleta" type="tns:agregarPaleta"/>
+
+<xs:element name="agregarPaletaResponse" type="tns:agregarPaletaResponse"/>
+
+<xs:element name="hello" type="tns:hello"/>
+
+<xs:element name="helloResponse" type="tns:helloResponse"/>
+
+<xs:element name="verPaletas" type="tns:verPaletas"/>
+
+<xs:element name="verPaletasResponse" type="tns:verPaletasResponse"/>
+
+<xs:complexType name="agregarEmpleado">
+<xs:sequence>
+<xs:element name="nombre" type="xs:string" minOccurs="0"/>
+<xs:element name="cedula" type="xs:string" minOccurs="0"/>
+<xs:element name="password" type="xs:string" minOccurs="0"/>
+<xs:element name="telefono" type="xs:string" minOccurs="0"/>
+<xs:element name="celular" type="xs:string" minOccurs="0"/>
+<xs:element name="sede" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="agregarEmpleadoResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="verPaletas">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="verPaletasResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:paleta" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="paleta">
+<xs:sequence>
+<xs:element name="codigo" type="xs:int" minOccurs="0"/>
+<xs:element name="nombre" type="xs:string" minOccurs="0"/>
+<xs:element name="precio" type="xs:double"/>
+<xs:element name="tipoPaleta" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="agregarPaleta">
+<xs:sequence>
+<xs:element name="nombre" type="xs:string" minOccurs="0"/>
+<xs:element name="tipo_paleta" type="xs:int"/>
+<xs:element name="precio" type="xs:double"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="agregarPaletaResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="hello">
+<xs:sequence>
+<xs:element name="name" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="helloResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>
