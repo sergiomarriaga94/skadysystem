@@ -15,20 +15,20 @@ import org.hibernate.Transaction;
  *
  * @author sergio.marriaga
  */
-public class ventaProductoDao {
+public class VentaProductoDao {
     public void nuevaPaletaVenta(VentaProducto  paleta){
-    SessionFactory sessionFactory=null;
-    Session session=null;
-    Transaction transaction=null;
+    SessionFactory lv_session_factory = null;
+    Session lv_session = null;
+    Transaction lv_transaction = null;
     try{
-        sessionFactory=HibernateUtil.getSessionFactory();
-        session=sessionFactory.openSession();
-        transaction=session.beginTransaction();
-        session.save(paleta);
-        transaction.commit();
-        session.close();
+        lv_session_factory=HibernateUtil.getSessionFactory();
+        lv_session=lv_session_factory.openSession();
+        lv_transaction=lv_session.beginTransaction();
+        lv_session.save(paleta);
+        lv_transaction.commit();
+        lv_session.close();
     }catch(HibernateException e){
-        transaction.rollback();
+        lv_transaction.rollback();
         throw new RuntimeException("No se pudo agregar la paleta a la base de datos");
     }
     }

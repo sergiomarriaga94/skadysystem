@@ -26,7 +26,7 @@ import com.udea.skadysystem.facades.IPaletaFacadeLocal;
  *
  * @author sergio.marriaga
  */
-public class ventasServlet extends HttpServlet {
+public class VentasServlet extends HttpServlet {
 
     @EJB
     private IPaletaFacadeLocal gv_paleta_facade;

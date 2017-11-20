@@ -15,12 +15,12 @@ import org.hibernate.SessionFactory;
  *
  * @author sergio.marriaga
  */
-public class serviceDao {
+public class ServiceDao {
     public List<Usuario> getEmpleados() {
-        SessionFactory factory=HibernateUtil.getSessionFactory();
-        Session s=factory.openSession();
-        Query q=s.createQuery("from Usuario");
-        List<Usuario> empleados=q.list();
-        return empleados;
+        SessionFactory lv_factory = HibernateUtil.getSessionFactory();
+        Session lv_s = lv_factory.openSession();
+        Query lv_q = lv_s.createQuery("from Usuario");
+        List<Usuario> lv_empleados = lv_q.list();
+        return lv_empleados;
     }
 }

@@ -21,7 +21,7 @@ import com.udea.skadysystem.facades.IUsuarioFacadeLocal;
  *
  * @author sergio.marriaga
  */
-public class usuarioServlet extends HttpServlet {
+public class UsuarioServlet extends HttpServlet {
 
     @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/localhost_8080/paletas_service/paletaWs.wsdl")
     private PaletaWs_Service service;

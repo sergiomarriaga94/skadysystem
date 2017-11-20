@@ -14,7 +14,7 @@ import org.hibernate.SessionFactory;
  *
  * @author sergio.marriaga
  */
-public class usuarioDao {
+public class UsuarioDao {
   /*  
      public String consultarNombre(String cedula) {
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();

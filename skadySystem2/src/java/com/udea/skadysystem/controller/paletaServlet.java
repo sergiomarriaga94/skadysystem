@@ -18,7 +18,7 @@ import javax.xml.ws.WebServiceRef;
  *
  * @author sergio.marriaga
  */
-public class paletaServlet extends HttpServlet {
+public class PaletaServlet extends HttpServlet {
 
     @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/localhost_8080/paletas_service/paletaWs.wsdl")
     private PaletaWs_Service gv_service;

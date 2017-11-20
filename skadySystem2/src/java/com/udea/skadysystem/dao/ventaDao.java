@@ -16,36 +16,36 @@ import org.hibernate.Transaction;
  *
  * @author sergio.marriaga
  */
-public class ventaDao {
+public class VentaDao {
 
     public void nuevaVenta(Venta venta) {
-        SessionFactory sessionFactory = null;
-        Session session = null;
-        Transaction transaction = null;
+        SessionFactory lv_session_factory = null;
+        Session lv_session = null;
+        Transaction lv_transaction = null;
         try {
-            sessionFactory = HibernateUtil.getSessionFactory();
-            session = sessionFactory.openSession();
-            transaction = session.beginTransaction();
-            session.save(venta);
-            transaction.commit();
-            session.close();
+            lv_session_factory = HibernateUtil.getSessionFactory();
+            lv_session = lv_session_factory.openSession();
+            lv_transaction = lv_session.beginTransaction();
+            lv_session.save(venta);
+            lv_transaction.commit();
+            lv_session.close();
         } catch (HibernateException e) {
-            transaction.rollback();
+            lv_transaction.rollback();
             throw new RuntimeException("No se pudo agregar la venta a la base de datos");
         }
     }
 
     public Venta nose() {
-        SessionFactory sessionFactory = null;
-        Session session = null;
+        SessionFactory lv_session_factory = null;
+        Session lv_session = null;
         try {
-            sessionFactory = HibernateUtil.getSessionFactory();
-            session = sessionFactory.openSession();
-            Query query = session.createQuery("from Venta order by id DESC");
-            query.setMaxResults(1);
-            Venta last = (Venta) query.uniqueResult();
-            session.close();
-            return last;
+            lv_session_factory = HibernateUtil.getSessionFactory();
+            lv_session = lv_session_factory.openSession();
+            Query lv_query = lv_session.createQuery("from Venta order by id DESC");
+            lv_query.setMaxResults(1);
+            Venta lv_last = (Venta) lv_query.uniqueResult();
+            lv_session.close();
+            return lv_last;
         } catch (HibernateException e) {
             throw new RuntimeException("No se pudo encontrar el dato");
         }
