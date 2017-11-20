@@ -19,18 +19,18 @@ import javax.persistence.Table;
 public class Paleta  implements java.io.Serializable {
 
 
-     private Integer codigo;
-     private String nombre;
-     private int tipoPaleta;
-     private double precio;
+     private Integer gv_codigo;
+     private String gv_nombre;
+     private int gv_tipoPaleta;
+     private double gv_precio;
 
     public Paleta() {
     }
 
     public Paleta(String nombre, int tipoPaleta, double precio) {
-       this.nombre = nombre;
-       this.tipoPaleta = tipoPaleta;
-       this.precio = precio;
+       this.gv_nombre = nombre;
+       this.gv_tipoPaleta = tipoPaleta;
+       this.gv_precio = precio;
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
@@ -38,41 +38,41 @@ public class Paleta  implements java.io.Serializable {
     
     @Column(name="CODIGO", unique=true, nullable=false)
     public Integer getCodigo() {
-        return this.codigo;
+        return this.gv_codigo;
     }
     
     public void setCodigo(Integer codigo) {
-        this.codigo = codigo;
+        this.gv_codigo = codigo;
     }
 
     
     @Column(name="NOMBRE", nullable=false, length=20)
     public String getNombre() {
-        return this.nombre;
+        return this.gv_nombre;
     }
     
     public void setNombre(String nombre) {
-        this.nombre = nombre;
+        this.gv_nombre = nombre;
     }
 
     
     @Column(name="TIPO_PALETA", nullable=false)
     public int getTipoPaleta() {
-        return this.tipoPaleta;
+        return this.gv_tipoPaleta;
     }
     
     public void setTipoPaleta(int tipoPaleta) {
-        this.tipoPaleta = tipoPaleta;
+        this.gv_tipoPaleta = tipoPaleta;
     }
 
     
     @Column(name="PRECIO", nullable=false, precision=22, scale=0)
     public double getPrecio() {
-        return this.precio;
+        return this.gv_precio;
     }
     
     public void setPrecio(double precio) {
-        this.precio = precio;
+        this.gv_precio = precio;
     }
 
 

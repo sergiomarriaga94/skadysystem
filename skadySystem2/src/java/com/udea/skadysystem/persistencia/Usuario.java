@@ -19,32 +19,32 @@ import javax.persistence.Table;
 public class Usuario  implements java.io.Serializable {
 
 
-     private Integer id;
-     private String nombre;
-     private String cedula;
-     private String password;
-     private String telefono;
-     private String celular;
-     private Integer sede;
+     private Integer gv_id;
+     private String gv_nombre;
+     private String gv_cedula;
+     private String gv_password;
+     private String gv_telefono;
+     private String gv_celular;
+     private Integer gv_sede;
 
     public Usuario() {
     }
 
 	
     public Usuario(String nombre, String cedula, String password, String telefono, String celular) {
-        this.nombre = nombre;
-        this.cedula = cedula;
-        this.password = password;
-        this.telefono = telefono;
-        this.celular = celular;
+        this.gv_nombre = nombre;
+        this.gv_cedula = cedula;
+        this.gv_password = password;
+        this.gv_telefono = telefono;
+        this.gv_celular = celular;
     }
     public Usuario(String nombre, String cedula, String password, String telefono, String celular, Integer sede) {
-       this.nombre = nombre;
-       this.cedula = cedula;
-       this.password = password;
-       this.telefono = telefono;
-       this.celular = celular;
-       this.sede = sede;
+       this.gv_nombre = nombre;
+       this.gv_cedula = cedula;
+       this.gv_password = password;
+       this.gv_telefono = telefono;
+       this.gv_celular = celular;
+       this.gv_sede = sede;
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
@@ -52,71 +52,71 @@ public class Usuario  implements java.io.Serializable {
     
     @Column(name="ID", unique=true, nullable=false)
     public Integer getId() {
-        return this.id;
+        return this.gv_id;
     }
     
     public void setId(Integer id) {
-        this.id = id;
+        this.gv_id = id;
     }
 
     
     @Column(name="NOMBRE", nullable=false, length=40)
     public String getNombre() {
-        return this.nombre;
+        return this.gv_nombre;
     }
     
     public void setNombre(String nombre) {
-        this.nombre = nombre;
+        this.gv_nombre = nombre;
     }
 
     
     @Column(name="CEDULA", nullable=false, length=10)
     public String getCedula() {
-        return this.cedula;
+        return this.gv_cedula;
     }
     
     public void setCedula(String cedula) {
-        this.cedula = cedula;
+        this.gv_cedula = cedula;
     }
 
     
     @Column(name="PASSWORD", nullable=false, length=20)
     public String getPassword() {
-        return this.password;
+        return this.gv_password;
     }
     
     public void setPassword(String password) {
-        this.password = password;
+        this.gv_password = password;
     }
 
     
     @Column(name="TELEFONO", nullable=false, length=10)
     public String getTelefono() {
-        return this.telefono;
+        return this.gv_telefono;
     }
     
     public void setTelefono(String telefono) {
-        this.telefono = telefono;
+        this.gv_telefono = telefono;
     }
 
     
     @Column(name="CELULAR", nullable=false, length=10)
     public String getCelular() {
-        return this.celular;
+        return this.gv_celular;
     }
     
     public void setCelular(String celular) {
-        this.celular = celular;
+        this.gv_celular = celular;
     }
 
     
     @Column(name="SEDE")
     public Integer getSede() {
-        return this.sede;
+        return this.gv_sede;
     }
     
     public void setSede(Integer sede) {
-        this.sede = sede;
+        this.gv_sede = sede;
     }
 
 

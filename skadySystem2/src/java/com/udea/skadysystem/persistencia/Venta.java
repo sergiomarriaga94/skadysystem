@@ -25,16 +25,16 @@ import javax.persistence.TemporalType;
 public class Venta  implements java.io.Serializable {
 
 
-     private Integer id;
-     private double total;
-     private Date fecha;
+     private Integer gv_id;
+     private double gv_total;
+     private Date gv_fecha;
 
     public Venta() {
     }
 
     public Venta(double total, Date fecha) {
-       this.total = total;
-       this.fecha = fecha;
+       this.gv_total = total;
+       this.gv_fecha = fecha;
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
@@ -42,39 +42,39 @@ public class Venta  implements java.io.Serializable {
     
     @Column(name="ID", unique=true, nullable=false)
     public Integer getId() {
-        return this.id;
+        return this.gv_id;
     }
     
     public void setId(Integer id) {
-        this.id = id;
+        this.gv_id = id;
     }
 
     
     @Column(name="TOTAL", nullable=false, precision=22, scale=0)
     public double getTotal() {
-        return this.total;
+        return this.gv_total;
     }
     
     public void setTotal(double total) {
-        this.total = total;
+        this.gv_total = total;
     }
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name="FECHA", nullable=false, length=19)
     public Date getFecha() {
-        return this.fecha;
+        return this.gv_fecha;
     }
     
     public void setFecha(Date fecha) {
-        this.fecha = fecha;
+        this.gv_fecha = fecha;
     }
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 47 * hash + Objects.hashCode(this.id);
-        hash = 47 * hash + (int) (Double.doubleToLongBits(this.total) ^ (Double.doubleToLongBits(this.total) >>> 32));
-        hash = 47 * hash + Objects.hashCode(this.fecha);
+        hash = 47 * hash + Objects.hashCode(this.gv_id);
+        hash = 47 * hash + (int) (Double.doubleToLongBits(this.gv_total) ^ (Double.doubleToLongBits(this.gv_total) >>> 32));
+        hash = 47 * hash + Objects.hashCode(this.gv_fecha);
         return hash;
     }
 
@@ -90,13 +90,13 @@ public class Venta  implements java.io.Serializable {
             return false;
         }
         final Venta other = (Venta) obj;
-        if (Double.doubleToLongBits(this.total) != Double.doubleToLongBits(other.total)) {
+        if (Double.doubleToLongBits(this.gv_total) != Double.doubleToLongBits(other.gv_total)) {
             return false;
         }
-        if (!Objects.equals(this.id, other.id)) {
+        if (!Objects.equals(this.gv_id, other.gv_id)) {
             return false;
         }
-        if (!Objects.equals(this.fecha, other.fecha)) {
+        if (!Objects.equals(this.gv_fecha, other.gv_fecha)) {
             return false;
         }
         return true;
@@ -104,14 +104,14 @@ public class Venta  implements java.io.Serializable {
 
     @Override
     public String toString() {
-        return "Venta{" + "id=" + id + ", total=" + total + ", fecha=" + fecha + '}';
+        return "Venta{" + "id=" + gv_id + ", total=" + gv_total + ", fecha=" + gv_fecha + '}';
     }
 
 
 public static List<VentaProducto> paletas=new ArrayList();
 
     public Venta(double total) {
-        this.total = total;
+        this.gv_total = total;
     }
 
 

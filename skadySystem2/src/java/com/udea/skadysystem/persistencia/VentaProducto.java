@@ -19,22 +19,22 @@ import javax.persistence.Table;
 public class VentaProducto  implements java.io.Serializable {
 
 
-     private Integer id;
-     private int codigoVenta;
-     private String nombre;
-     private int codigo;
-     private int cantidad;
-     private double precio;
+     private Integer gv_id;
+     private int gv_codigoVenta;
+     private String gv_nombre;
+     private int gv_codigo;
+     private int gv_cantidad;
+     private double gv_precio;
 
     public VentaProducto() {
     }
 
     public VentaProducto(int codigoVenta, String nombre, int codigo, int cantidad, double precio) {
-       this.codigoVenta = codigoVenta;
-       this.nombre = nombre;
-       this.codigo = codigo;
-       this.cantidad = cantidad;
-       this.precio = precio;
+       this.gv_codigoVenta = codigoVenta;
+       this.gv_nombre = nombre;
+       this.gv_codigo = codigo;
+       this.gv_cantidad = cantidad;
+       this.gv_precio = precio;
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
@@ -42,61 +42,61 @@ public class VentaProducto  implements java.io.Serializable {
     
     @Column(name="ID", unique=true, nullable=false)
     public Integer getId() {
-        return this.id;
+        return this.gv_id;
     }
     
     public void setId(Integer id) {
-        this.id = id;
+        this.gv_id = id;
     }
 
     
     @Column(name="CODIGO_VENTA", nullable=false)
     public int getCodigoVenta() {
-        return this.codigoVenta;
+        return this.gv_codigoVenta;
     }
     
     public void setCodigoVenta(int codigoVenta) {
-        this.codigoVenta = codigoVenta;
+        this.gv_codigoVenta = codigoVenta;
     }
 
     
     @Column(name="NOMBRE", nullable=false, length=20)
     public String getNombre() {
-        return this.nombre;
+        return this.gv_nombre;
     }
     
     public void setNombre(String nombre) {
-        this.nombre = nombre;
+        this.gv_nombre = nombre;
     }
 
     
     @Column(name="CODIGO", nullable=false)
     public int getCodigo() {
-        return this.codigo;
+        return this.gv_codigo;
     }
     
     public void setCodigo(int codigo) {
-        this.codigo = codigo;
+        this.gv_codigo = codigo;
     }
 
     
     @Column(name="CANTIDAD", nullable=false)
     public int getCantidad() {
-        return this.cantidad;
+        return this.gv_cantidad;
     }
     
     public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
+        this.gv_cantidad = cantidad;
     }
 
     
     @Column(name="PRECIO", nullable=false, precision=22, scale=0)
     public double getPrecio() {
-        return this.precio;
+        return this.gv_precio;
     }
     
     public void setPrecio(double precio) {
-        this.precio = precio;
+        this.gv_precio = precio;
     }
 
 

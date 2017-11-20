@@ -1,15 +1,14 @@
-<?xml version="1.0"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated 4/06/2017 08:00:09 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="com.udea.skadysystem.persistencia.TipoPaleta" table="tipo_paleta" catalog="skady" optimistic-lock="version">
-        <id name="codigo" type="java.lang.Integer">
-            <column name="CODIGO" />
-            <generator class="identity" />
-        </id>
-        <property name="nombre" type="string">
-            <column name="NOMBRE" length="10" />
-        </property>
-    </class>
+  <class catalog="skady" name="com.udea.skadysystem.persistencia.TipoPaleta" optimistic-lock="version" table="tipo_paleta">
+    <id name="gv_codigo" type="java.lang.Integer">
+      <column name="CODIGO"/>
+      <generator class="identity"/>
+    </id>
+    <property name="gv_nombre" type="string">
+      <column length="10" name="NOMBRE"/>
+    </property>
+  </class>
 </hibernate-mapping>

@@ -1,21 +1,20 @@
-<?xml version="1.0"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated 4/06/2017 08:00:09 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="com.udea.skadysystem.persistencia.Paleta" table="paleta" catalog="skady" optimistic-lock="version">
-        <id name="codigo" type="java.lang.Integer">
-            <column name="CODIGO" />
-            <generator class="identity" />
-        </id>
-        <property name="nombre" type="string">
-            <column name="NOMBRE" length="20" not-null="true" />
-        </property>
-        <property name="tipoPaleta" type="int">
-            <column name="TIPO_PALETA" not-null="true" />
-        </property>
-        <property name="precio" type="double">
-            <column name="PRECIO" precision="22" scale="0" not-null="true" />
-        </property>
-    </class>
+  <class catalog="skady" name="com.udea.skadysystem.persistencia.Paleta" optimistic-lock="version" table="paleta">
+    <id name="gv_codigo" type="java.lang.Integer">
+      <column name="CODIGO"/>
+      <generator class="identity"/>
+    </id>
+    <property name="gv_nombre" type="string">
+      <column length="20" name="NOMBRE" not-null="true"/>
+    </property>
+    <property name="gv_tipoPaleta" type="int">
+      <column name="TIPO_PALETA" not-null="true"/>
+    </property>
+    <property name="gv_precio" type="double">
+      <column name="PRECIO" not-null="true" precision="22" scale="0"/>
+    </property>
+  </class>
 </hibernate-mapping>

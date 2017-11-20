@@ -19,14 +19,14 @@ import javax.persistence.Table;
 public class TipoPaleta  implements java.io.Serializable {
 
 
-     private Integer codigo;
-     private String nombre;
+     private Integer gv_codigo;
+     private String gv_nombre;
 
     public TipoPaleta() {
     }
 
     public TipoPaleta(String nombre) {
-       this.nombre = nombre;
+       this.gv_nombre = nombre;
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
@@ -34,21 +34,21 @@ public class TipoPaleta  implements java.io.Serializable {
     
     @Column(name="CODIGO", unique=true, nullable=false)
     public Integer getCodigo() {
-        return this.codigo;
+        return this.gv_codigo;
     }
     
     public void setCodigo(Integer codigo) {
-        this.codigo = codigo;
+        this.gv_codigo = codigo;
     }
 
     
     @Column(name="NOMBRE", length=10)
     public String getNombre() {
-        return this.nombre;
+        return this.gv_nombre;
     }
     
     public void setNombre(String nombre) {
-        this.nombre = nombre;
+        this.gv_nombre = nombre;
     }
 
 

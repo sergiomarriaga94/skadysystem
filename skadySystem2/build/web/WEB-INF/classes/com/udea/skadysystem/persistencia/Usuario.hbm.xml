@@ -1,30 +1,29 @@
-<?xml version="1.0"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated 4/06/2017 08:00:09 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="com.udea.skadysystem.persistencia.Usuario" table="usuario" catalog="skady" optimistic-lock="version">
-        <id name="id" type="java.lang.Integer">
-            <column name="ID" />
-            <generator class="identity" />
-        </id>
-        <property name="nombre" type="string">
-            <column name="NOMBRE" length="40" not-null="true" />
-        </property>
-        <property name="cedula" type="string">
-            <column name="CEDULA" length="10" not-null="true" />
-        </property>
-        <property name="password" type="string">
-            <column name="PASSWORD" length="20" not-null="true" />
-        </property>
-        <property name="telefono" type="string">
-            <column name="TELEFONO" length="10" not-null="true" />
-        </property>
-        <property name="celular" type="string">
-            <column name="CELULAR" length="10" not-null="true" />
-        </property>
-        <property name="sede" type="java.lang.Integer">
-            <column name="SEDE" />
-        </property>
-    </class>
+  <class catalog="skady" name="com.udea.skadysystem.persistencia.Usuario" optimistic-lock="version" table="usuario">
+    <id name="gv_id" type="java.lang.Integer">
+      <column name="ID"/>
+      <generator class="identity"/>
+    </id>
+    <property name="gv_nombre" type="string">
+      <column length="40" name="NOMBRE" not-null="true"/>
+    </property>
+    <property name="gv_cedula" type="string">
+      <column length="10" name="CEDULA" not-null="true"/>
+    </property>
+    <property name="gv_password" type="string">
+      <column length="20" name="PASSWORD" not-null="true"/>
+    </property>
+    <property name="gv_telefono" type="string">
+      <column length="10" name="TELEFONO" not-null="true"/>
+    </property>
+    <property name="gv_celular" type="string">
+      <column length="10" name="CELULAR" not-null="true"/>
+    </property>
+    <property name="gv_sede" type="java.lang.Integer">
+      <column name="SEDE"/>
+    </property>
+  </class>
 </hibernate-mapping>
