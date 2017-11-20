@@ -11,7 +11,7 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
-import com.udea.skadysystem.dao.serviceDao;
+import com.udea.skadysystem.dao.ServiceDao;
 import javax.ws.rs.Produces;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -36,8 +36,8 @@ public class exponerRest {
    @GET
    @Produces(MediaType.APPLICATION_JSON)
     public List<Usuario> getEmpleados(){
-        serviceDao dao=new serviceDao(); 
-        return dao.getEmpleados();
+        ServiceDao lv_dao=new ServiceDao(); 
+        return lv_dao.getEmpleados();
     }
     }
     

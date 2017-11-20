@@ -14,7 +14,7 @@ import javax.ejb.Local;
  * @author sergio.marriaga
  */
 @Local
-public interface PaletaFacadeLocal {
+public interface IPaletaFacadeLocal {
 
     void create(Paleta paleta);
 

@@ -14,7 +14,7 @@ import javax.ejb.Local;
  * @author sergio.marriaga
  */
 @Local
-public interface UsuarioFacadeLocal {
+public interface IUsuarioFacadeLocal {
 
     void create(Usuario usuario);
 

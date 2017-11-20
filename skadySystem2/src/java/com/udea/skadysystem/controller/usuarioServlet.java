@@ -5,8 +5,7 @@
  */
 package com.udea.skadysystem.controller;
 
-import com.udea.skadysystem.dao.usuarioDao;
-import com.udea.skadysystem.facades.UsuarioFacadeLocal;
+import com.udea.skadysystem.dao.UsuarioDao;
 import com.udea.skadysystem.wssoap.PaletaWs_Service;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -16,6 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.xml.ws.WebServiceRef;
+import com.udea.skadysystem.facades.IUsuarioFacadeLocal;
 
 /**
  *
@@ -27,7 +27,7 @@ public class usuarioServlet extends HttpServlet {
     private PaletaWs_Service service;
 
     @EJB
-    private UsuarioFacadeLocal usuarioFacade;
+    private IUsuarioFacadeLocal gv_usuario_facade;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -41,54 +41,54 @@ public class usuarioServlet extends HttpServlet {
     private String agregarEmpleado(java.lang.String nombre, java.lang.String cedula, java.lang.String password, java.lang.String telefono, java.lang.String celular, int sede) {
         // Note that the injected javax.xml.ws.Service reference as well as port objects are not thread safe.
         // If the calling of port operations may lead to race condition some synchronization is required.
-        com.udea.skadysystem.wssoap.PaletaWs port = service.getPaletaWsPort();
-        return port.agregarEmpleado(nombre, cedula, password, telefono, celular, sede);
+        com.udea.skadysystem.wssoap.PaletaWs lv_port = service.getPaletaWsPort();
+        return lv_port.agregarEmpleado(nombre, cedula, password, telefono, celular, sede);
     }
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        usuarioDao dao = new usuarioDao();
+        UsuarioDao lv_dao = new UsuarioDao();
         response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
+        PrintWriter lv_out = response.getWriter();
         try {
-            String action = request.getParameter("action");
-            String url = "nuevoEmpleado.jsp";
-            if ("Ingresar".equals(action)) {
-                String User = request.getParameter("cedula");
-                String Password = request.getParameter("password");
+            String lv_action = request.getParameter("action");
+            String lv_url = "nuevoEmpleado.jsp";
+            if ("Ingresar".equals(lv_action)) {
+                String lv_user = request.getParameter("cedula");
+                String lv_password = request.getParameter("password");
 
-                if (usuarioFacade.checklogin(User, Password)) {
-                    request.getSession().setAttribute("Ingresar", User);
-                    String nombre = usuarioFacade.traerNombre(User);
-                    request.getSession().setAttribute("nombre", nombre);
-                    url = "menu.jsp";
+                if (gv_usuario_facade.checklogin(lv_user, lv_password)) {
+                    request.getSession().setAttribute("Ingresar", lv_user);
+                    String lv_nombre = gv_usuario_facade.traerNombre(lv_user);
+                    request.getSession().setAttribute("nombre", lv_nombre);
+                    lv_url = "menu.jsp";
                 } else {
-                    url = "index.jsp?error=1";
+                    lv_url = "index.jsp?error=1";
                 }
             }
-            String mensaje = "";
-            if ("guardarEmpleado".equals(action)) {
-                String nombre = request.getParameter("nombre");
-                String cedula = request.getParameter("cedula");
-                String password = request.getParameter("password");
-                String telefono = request.getParameter("telefono");
-                String celular = request.getParameter("celular");
-                String sede = request.getParameter("sede");
-                if (sede.equals("1")) {
-                    String envio = agregarEmpleado(nombre, cedula, password, telefono, celular, Integer.parseInt(sede));
-                    mensaje = "El empleado fue guardado con exito";
-                    request.getSession().setAttribute("mensaje", mensaje);
-                    System.out.println("se guardo la siguiente información" + envio);
-                    url = "nuevoEmpleado.jsp";
+            String lv_mensaje = "";
+            if ("guardarEmpleado".equals(lv_action)) {
+                String lv_nombre = request.getParameter("nombre");
+                String lv_cedula = request.getParameter("cedula");
+                String lv_password = request.getParameter("password");
+                String lv_telefono = request.getParameter("telefono");
+                String lv_celular = request.getParameter("celular");
+                String lv_sede = request.getParameter("sede");
+                if (lv_sede.equals("1")) {
+                    String lv_envio = agregarEmpleado(lv_nombre, lv_cedula, lv_password, lv_telefono, lv_celular, Integer.parseInt(lv_sede));
+                    lv_mensaje = "El empleado fue guardado con exito";
+                    request.getSession().setAttribute("mensaje", lv_mensaje);
+                    System.out.println("se guardo la siguiente información" + lv_envio);
+                    lv_url = "nuevoEmpleado.jsp";
                 } else {
-                    mensaje = "la sede ingresada es incorrecta";
-                    url="nuevoEmpleado.jsp";
-                    request.getSession().setAttribute("mensaje", mensaje);
+                    lv_mensaje = "la sede ingresada es incorrecta";
+                    lv_url="nuevoEmpleado.jsp";
+                    request.getSession().setAttribute("mensaje", lv_mensaje);
                 }
             }
-            response.sendRedirect(url);
+            response.sendRedirect(lv_url);
         } finally {
-            out.close();
+            lv_out.close();
         }
     }
 

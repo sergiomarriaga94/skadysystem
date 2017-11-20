@@ -21,7 +21,7 @@ public class Paleta  implements java.io.Serializable {
 
      private Integer gv_codigo;
      private String gv_nombre;
-     private int gv_tipoPaleta;
+     private int gv_tipo_paleta;
      private double gv_precio;
 
     public Paleta() {
@@ -29,7 +29,7 @@ public class Paleta  implements java.io.Serializable {
 
     public Paleta(String nombre, int tipoPaleta, double precio) {
        this.gv_nombre = nombre;
-       this.gv_tipoPaleta = tipoPaleta;
+       this.gv_tipo_paleta = tipoPaleta;
        this.gv_precio = precio;
     }
    
@@ -58,11 +58,11 @@ public class Paleta  implements java.io.Serializable {
     
     @Column(name="TIPO_PALETA", nullable=false)
     public int getTipoPaleta() {
-        return this.gv_tipoPaleta;
+        return this.gv_tipo_paleta;
     }
     
     public void setTipoPaleta(int tipoPaleta) {
-        this.gv_tipoPaleta = tipoPaleta;
+        this.gv_tipo_paleta = tipoPaleta;
     }
 
     

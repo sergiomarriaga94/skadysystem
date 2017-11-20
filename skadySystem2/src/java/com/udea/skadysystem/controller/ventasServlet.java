@@ -6,9 +6,8 @@
 package com.udea.skadysystem.controller;
 
 import com.udea.skadysystem.dao.HibernateUtil;
-import com.udea.skadysystem.dao.ventaDao;
-import com.udea.skadysystem.dao.ventaProductoDao;
-import com.udea.skadysystem.facades.PaletaFacadeLocal;
+import com.udea.skadysystem.dao.VentaDao;
+import com.udea.skadysystem.dao.VentaProductoDao;
 import com.udea.skadysystem.persistencia.Paleta;
 import com.udea.skadysystem.persistencia.Venta;
 import com.udea.skadysystem.persistencia.VentaProducto;
@@ -21,6 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import com.udea.skadysystem.facades.IPaletaFacadeLocal;
 
 /**
  *
@@ -29,7 +29,7 @@ import org.hibernate.SessionFactory;
 public class ventasServlet extends HttpServlet {
 
     @EJB
-    private PaletaFacadeLocal paletaFacade;
+    private IPaletaFacadeLocal gv_paleta_facade;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -43,75 +43,75 @@ public class ventasServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
+        PrintWriter lv_out = response.getWriter();
         try {
-            String action = request.getParameter("action");
-            String url = "menu.jsp";
+            String lv_action = request.getParameter("action");
+            String lv_url = "menu.jsp";
 
-            double totalVenta = 0;
-            String mensaje = "";
-            VentaProducto ventaProducto;
-            if ("agregarPaleta".equals(action)) {
-                String codigo = request.getParameter("codigoPaleta");
-                String cantidad = request.getParameter("cantidad");
+            double lv_total_venta = 0;
+            String lv_mensaje = "";
+            VentaProducto lv_venta_producto;
+            if ("agregarPaleta".equals(lv_action)) {
+                String lv_codigo = request.getParameter("codigoPaleta");
+                String lv_cantidad = request.getParameter("cantidad");
 
-                Paleta p = consultarPaleta(Integer.parseInt(codigo));
-                if (p == null) {
-                    mensaje = "El codigo ingresado es invalido";
-                    request.getSession().setAttribute("mensaje", mensaje);
-                    url = "venta.jsp";
+                Paleta lv_p = consultarPaleta(Integer.parseInt(lv_codigo));
+                if (lv_p == null) {
+                    lv_mensaje = "El codigo ingresado es invalido";
+                    request.getSession().setAttribute("mensaje", lv_mensaje);
+                    lv_url = "venta.jsp";
                 } else {
-                    ventaProducto = new VentaProducto(0, p.getNombre(), Integer.parseInt(codigo), Integer.parseInt(cantidad),
-                            p.getPrecio());
+                    lv_venta_producto = new VentaProducto(0, lv_p.getNombre(), Integer.parseInt(lv_codigo), Integer.parseInt(lv_cantidad),
+                            lv_p.getPrecio());
 
-                    Venta.paletas.add(ventaProducto);
+                    Venta.paletas.add(lv_venta_producto);
                     // Paleta.cantidad.add(Double.parseDouble(cantidad));
                     request.getSession().setAttribute("paletas", Venta.paletas);
-                    request.getSession().setAttribute("mensaje", mensaje);
+                    request.getSession().setAttribute("mensaje", lv_mensaje);
                     //request.getSession().setAttribute("cantidad", Paleta.cantidad.get(Paleta.cantidad.size()-1));
-                    url = "venta.jsp";
+                    lv_url = "venta.jsp";
 
-                    totalVenta = Venta.paletas.stream().map((v) -> (v.getPrecio() * v.getCantidad())).reduce(totalVenta, (accumulator, _item) -> accumulator + _item);
-                    request.getSession().setAttribute("totalVenta", totalVenta);
+                    lv_total_venta = Venta.paletas.stream().map((v) -> (v.getPrecio() * v.getCantidad())).reduce(lv_total_venta, (accumulator, _item) -> accumulator + _item);
+                    request.getSession().setAttribute("totalVenta", lv_total_venta);
                 }
             }
-            if ("cancelarVenta".equals(action)) {
+            if ("cancelarVenta".equals(lv_action)) {
                 Venta.paletas.clear();
-                totalVenta = 0;
-                request.getSession().setAttribute("totalVenta", totalVenta);
+                lv_total_venta = 0;
+                request.getSession().setAttribute("totalVenta", lv_total_venta);
                 request.getSession().setAttribute("paletas", Venta.paletas);
-                request.getSession().setAttribute("mensaje", mensaje);
-                url = "venta.jsp";
+                request.getSession().setAttribute("mensaje", lv_mensaje);
+                lv_url = "venta.jsp";
             }
-            if ("venta".equals(action)) {
+            if ("venta".equals(lv_action)) {
                 if (Venta.paletas.size() == 0) {
-                    mensaje = "No se ha registrado ningun producto";
-                    url = "venta.jsp";
-                    request.getSession().setAttribute("mensaje", mensaje);
+                    lv_mensaje = "No se ha registrado ningun producto";
+                    lv_url = "venta.jsp";
+                    request.getSession().setAttribute("mensaje", lv_mensaje);
                 } else {
-                    totalVenta = Venta.paletas.stream().map((v) -> (v.getPrecio() * v.getCantidad())).reduce(totalVenta, (accumulator, _item) -> accumulator + _item);
-                    Venta v = new Venta(totalVenta);
-                    ventaDao dao = new ventaDao();
-                    dao.nuevaVenta(v);
-                    mensaje = "Venta realizada con exito";                   
-                    totalVenta = 0;
-                    v = dao.nose();
-                    ventaProductoDao productoDao = new ventaProductoDao();
+                    lv_total_venta = Venta.paletas.stream().map((v) -> (v.getPrecio() * v.getCantidad())).reduce(lv_total_venta, (accumulator, _item) -> accumulator + _item);
+                    Venta lv_v = new Venta(lv_total_venta);
+                    VentaDao lv_dao = new VentaDao();
+                    lv_dao.nuevaVenta(lv_v);
+                    lv_mensaje = "Venta realizada con exito";                   
+                    lv_total_venta = 0;
+                    lv_v = lv_dao.nose();
+                    VentaProductoDao lv_productoDao = new VentaProductoDao();
                     for (VentaProducto d : Venta.paletas) {
-                        d.setCodigoVenta(v.getId());
-                        productoDao.nuevaPaletaVenta(d);
+                        d.setCodigoVenta(lv_v.getId());
+                        lv_productoDao.nuevaPaletaVenta(d);
                     }
                     Venta.paletas.clear();
-                    request.getSession().setAttribute("totalVenta", totalVenta);
+                    request.getSession().setAttribute("totalVenta", lv_total_venta);
                     request.getSession().setAttribute("paletas", Venta.paletas);
-                    request.getSession().setAttribute("mensaje", mensaje);
-                    url = "venta.jsp";
+                    request.getSession().setAttribute("mensaje", lv_mensaje);
+                    lv_url = "venta.jsp";
                 }
                 //Paleta.cantidad.clear();
             }
-            response.sendRedirect(url);
+            response.sendRedirect(lv_url);
         } finally {
-            out.close();
+            lv_out.close();
         }
     }
 

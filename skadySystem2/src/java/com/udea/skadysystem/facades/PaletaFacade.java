@@ -15,14 +15,14 @@ import javax.persistence.PersistenceContext;
  * @author sergio.marriaga
  */
 @Stateless
-public class PaletaFacade extends AbstractFacade<Paleta> implements PaletaFacadeLocal {
+public class PaletaFacade extends IAbstractFacade<Paleta> implements IPaletaFacadeLocal {
 
     @PersistenceContext(unitName = "skadySystemPU")
-    private EntityManager em;
+    private EntityManager gv_em;
 
     @Override
     protected EntityManager getEntityManager() {
-        return em;
+        return gv_em;
     }
 
     public PaletaFacade() {

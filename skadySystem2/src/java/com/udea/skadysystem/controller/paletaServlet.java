@@ -21,7 +21,7 @@ import javax.xml.ws.WebServiceRef;
 public class paletaServlet extends HttpServlet {
 
     @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/localhost_8080/paletas_service/paletaWs.wsdl")
-    private PaletaWs_Service service;
+    private PaletaWs_Service gv_service;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,24 +35,24 @@ public class paletaServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
+        PrintWriter lv_out = response.getWriter();
         try {
             /* TODO output your page here. You may use following sample code. */
-            String action = request.getParameter("action");
-            String url = "menu.jsp";
-            if("guardarPaleta".equals(action)){
-                String nombre=request.getParameter("nombre");
-                String tipoPaleta=request.getParameter("tipoPaleta");
-                String precio=request.getParameter("precio");
-                String envio=agregarPaleta(nombre, Integer.parseInt(tipoPaleta), Double.valueOf(precio));
-                System.out.println("el envio se ha realizado" + envio);
-                url="menu.jsp";             
+            String lv_action = request.getParameter("action");
+            String lv_url = "menu.jsp";
+            if("guardarPaleta".equals(lv_action)){
+                String lv_nombre = request.getParameter("nombre");
+                String lv_tipoPaleta = request.getParameter("tipoPaleta");
+                String lv_precio = request.getParameter("precio");
+                String lv_envio = agregarPaleta(lv_nombre, Integer.parseInt(lv_tipoPaleta), Double.valueOf(lv_precio));
+                System.out.println("el envio se ha realizado" + lv_envio);
+                lv_url = "menu.jsp";             
             }
            
             
-            response.sendRedirect(url);
+            response.sendRedirect(lv_url);
         }finally{
-            out.close();
+            lv_out.close();
         }
     }
 
@@ -98,8 +98,8 @@ public class paletaServlet extends HttpServlet {
     private String agregarPaleta(java.lang.String nombre, int tipoPaleta, double precio) {
         // Note that the injected javax.xml.ws.Service reference as well as port objects are not thread safe.
         // If the calling of port operations may lead to race condition some synchronization is required.
-        com.udea.skadysystem.wssoap.PaletaWs port = service.getPaletaWsPort();
-        return port.agregarPaleta(nombre, tipoPaleta, precio);
+        com.udea.skadysystem.wssoap.PaletaWs lv_port = gv_service.getPaletaWsPort();
+        return lv_port.agregarPaleta(nombre, tipoPaleta, precio);
     }
    
 }

@@ -20,7 +20,7 @@ public class VentaProducto  implements java.io.Serializable {
 
 
      private Integer gv_id;
-     private int gv_codigoVenta;
+     private int gv_codigo_venta;
      private String gv_nombre;
      private int gv_codigo;
      private int gv_cantidad;
@@ -30,7 +30,7 @@ public class VentaProducto  implements java.io.Serializable {
     }
 
     public VentaProducto(int codigoVenta, String nombre, int codigo, int cantidad, double precio) {
-       this.gv_codigoVenta = codigoVenta;
+       this.gv_codigo_venta = codigoVenta;
        this.gv_nombre = nombre;
        this.gv_codigo = codigo;
        this.gv_cantidad = cantidad;
@@ -52,11 +52,11 @@ public class VentaProducto  implements java.io.Serializable {
     
     @Column(name="CODIGO_VENTA", nullable=false)
     public int getCodigoVenta() {
-        return this.gv_codigoVenta;
+        return this.gv_codigo_venta;
     }
     
     public void setCodigoVenta(int codigoVenta) {
-        this.gv_codigoVenta = codigoVenta;
+        this.gv_codigo_venta = codigoVenta;
     }
 
     

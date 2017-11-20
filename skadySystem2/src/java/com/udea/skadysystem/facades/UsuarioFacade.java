@@ -16,14 +16,14 @@ import javax.persistence.Query;
  * @author sergio.marriaga
  */
 @Stateless
-public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFacadeLocal {
+public class UsuarioFacade extends IAbstractFacade<Usuario> implements IUsuarioFacadeLocal {
 
     @PersistenceContext(unitName = "skadySystemPU")
-    private EntityManager em;
+    private EntityManager gv_em;
 
     @Override
     protected EntityManager getEntityManager() {
-        return em;
+        return gv_em;
     }
 
     public UsuarioFacade() {
@@ -32,25 +32,24 @@ public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFac
 
     @Override
     public boolean checklogin(String cedula, String password) {
-        Query q=em.createQuery("SELECT a FROM Usuario a WHERE a.cedula=:cedula and a.password=:password");
+        Query lv_q = gv_em.createQuery("SELECT a FROM Usuario a WHERE a.cedula=:cedula and a.password=:password");
         System.out.println("se tiene el documento" + cedula);
         System.out.println("se tiene el passo" + password);
 
-        q.setParameter("cedula", cedula);
-        q.setParameter("password",password);
+        lv_q.setParameter("cedula", cedula);
+        lv_q.setParameter("password",password);
         
-        return q.getResultList().size()>0;
+        return lv_q.getResultList().size()>0;
     }
 
     @Override
     public String traerNombre(String cedula) {
-        Query q=em.createQuery("SELECT a FROM Usuario a WHERE a.cedula=:cedula");
-        q.setParameter("cedula", cedula);
-        String nombre=((Usuario)(q.getSingleResult())).getNombre();
+        Query lv_q = gv_em.createQuery("SELECT a FROM Usuario a WHERE a.cedula=:cedula");
+        lv_q.setParameter("cedula", cedula);
+        String nombre=((Usuario)(lv_q.getSingleResult())).getNombre();
         System.out.println(nombre);
-        return ((Usuario)(q.getSingleResult())).getNombre();
-    }
-    
-    }
+        return ((Usuario)(lv_q.getSingleResult())).getNombre();
+    }    
+}
 
 
